@@ -42,9 +42,9 @@
     - name: Install pip
       command: pip install --upgrade pip
 
-   - name: Install docker-SDK
-     pip:
-       name: docker
+    - name: Install docker-SDK
+      pip:
+        name: docker
         
 - name: Deploy Container
   hosts: 192.168.0.215
