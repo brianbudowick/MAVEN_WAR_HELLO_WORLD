@@ -47,7 +47,7 @@
         name: docker
         
 - name: Deploy Container
-  hosts: 127.0.0.1
+  hosts: 172.17.0.1
   become: true
 
   tasks:
