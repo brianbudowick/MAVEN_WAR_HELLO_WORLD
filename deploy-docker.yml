@@ -45,6 +45,11 @@
       pip:
        name: docker
        executable: /usr/bin/pip3
+    
+    - name: Install Docker Python library
+      pip:
+        name: docker
+        state: present
 
 
 - name: Deploy Container
