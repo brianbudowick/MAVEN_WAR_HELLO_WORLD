@@ -36,7 +36,7 @@
     
     - name: Download get-pip.py
       get_url:
-        url: https://bootstrap.pypa.io/pip/3.7/get-pip.py
+        url: https://bootstrap.pypa.io/get-pip.py
         dest: /tmp/get-pip.py
 
     - name: Install pip
@@ -54,19 +54,6 @@
     - name: Pull image and create the container using docker_container
       docker_image:
         name: brianbudowick/devopsfinal:latest
-        source: pull
     
-    - name: Start the container using docker_container
-      docker_container:
-        name: tomcat_devops
-        image: brianbudowick/devopsfinal:latest
-        state: started
-        tty: true
-        auto_remove: true
-        ports:
-          - "8080:8080"
 
-    - name: Logout Docker
-      docker_login:
-        state: absent
 
