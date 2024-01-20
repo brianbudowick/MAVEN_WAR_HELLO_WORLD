@@ -6,6 +6,9 @@
   
   tasks:
     - name: Install yum-utils (use the yum module)
+      yum:
+        name: you-utils
+        state: present
 
     - name: Download Docker repository file using the get_url
 
