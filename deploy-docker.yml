@@ -36,15 +36,15 @@
           - python3-pip
         state: present
 
-- name: Ensure python3-pip is installed
-  yum:
-    name: python3-pip
-    state: present
+    - name: Ensure python3-pip is installed
+      yum:
+        name: python3-pip
+        state: present
 
-- name: Install docker-SDK
-  pip:
-    name: docker
-    executable: /usr/bin/pip3
+    - name: Install docker-SDK
+      pip:
+       name: docker
+       executable: /usr/bin/pip3
 
 
 - name: Deploy Container
