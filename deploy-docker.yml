@@ -32,6 +32,9 @@
     
 
     - name: Pull image and create the container using docker_container
+      docker_image:
+        name: brianbudowick/devopsfinal:latest
+        source: pull
     
     - name: Start the container using docker_container
       docker_container:
