@@ -42,7 +42,7 @@
     - name: Install pip
       command: pip install --upgrade pip
 
-   - name: Docker SDK
+   - name: Install docker-SDK
      pip:
        name: docker
         
