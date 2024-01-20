@@ -23,6 +23,10 @@
           - docker-compose-plugin
 
     - name: Start Docker service using the systemd module
+      systemd:
+        name: docker
+        state: started
+        enabled: yes
         
     - name: log into docker hub registry using the docker_login module
 
