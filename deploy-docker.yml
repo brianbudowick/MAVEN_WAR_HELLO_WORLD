@@ -36,10 +36,12 @@
           - python3-pip
         state: present
 
-    - name: Install Docker Python library
+    - name: Upgrade pip
+      command: pip install --upgrade pip
+
+    - name: Install docker-SDK
       pip:
         name: docker
-        state: present
 
 - name: Deploy Container
   hosts: 172.17.0.1
