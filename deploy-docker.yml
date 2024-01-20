@@ -54,6 +54,20 @@
     - name: Pull image and create the container using docker_container
       docker_image:
         name: brianbudowick/devopsfinal:latest
+
+    - name: Start the container using docker_container
+      docker_container:
+        name: tomcat_devops
+        image: brianbudowick/deveopsfinal:latest
+        state: started
+        tty: true
+        auto_remove: true
+        ports:
+          -"8080:8080"
+
+    - name: Log out of DockerHub
+      docker_login: 
+        state: absent 
     
 
 
