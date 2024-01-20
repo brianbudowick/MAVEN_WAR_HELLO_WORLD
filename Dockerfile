@@ -5,3 +5,5 @@ FROM tomcat:8.0-alpine
 LABEL maintainer=brianb@nomail.com
 
 ADD target/spring-boot-deployment.war /usr/local/tomcat/webapps
+
+EXPOSE 8080
