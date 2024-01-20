@@ -53,9 +53,15 @@
   become: true
 
   tasks:
-    - name: Pull image and create the container using docker_container
+    - name: Check if Docker image exists
+      docker_image_facts:
+        name: brianbudowick/devopsfinal:latest
+      register: docker_image_result
+
+    - name: Pull image if it doesn't exist
       docker_image:
         name: brianbudowick/devopsfinal:latest
+      when: not docker_image_result.exists
 
     - name: Start the container using docker_container
       docker_container:
@@ -70,6 +76,3 @@
     - name: Log out of DockerHub
       docker_login: 
         state: absent
-
-
-
