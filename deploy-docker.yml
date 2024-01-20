@@ -29,7 +29,16 @@
         enabled: yes
         
     - name: log into docker hub registry using the docker_login module
+    
 
     - name: Pull image and create the container using docker_container
     
     - name: Start the container using docker_container
+      docker_container:
+        name: tomcat_devops
+        image: brianbudowick/devopsfinal:latest
+        state: started
+        tty: true
+        auto_remove: true
+        ports:
+          - "8080:8080"
