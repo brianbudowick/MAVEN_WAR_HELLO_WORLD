@@ -39,8 +39,8 @@
         url: https://bootstrap.pypa.io/get-pip.py
         dest: /tmp/get-pip.py
 
-    - name: Install pip
-      command: python /tmp/get-pip.py
+    - name: Install pip for Python 2.7
+      command: python2 /tmp/get-pip.py
 
     - name: Docker SDK
       pip:
