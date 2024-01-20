@@ -7,7 +7,7 @@
   tasks:
     - name: Install yum-utils (use the yum module)
       yum:
-        name: you-utils
+        name: yum-utils
         state: present
 
     - name: Download Docker repository file using the get_url
@@ -27,10 +27,30 @@
         name: docker
         state: started
         enabled: yes
-        
-    - name: log into docker hub registry using the docker_login module
     
+    - name: Python
+      yum:
+        name:
+          - python
+        state: present
+    
+    - name: Download get-pip.py
+      get_url:
+        url: https://bootstrap.pypa.io/pip/2.7/get-pip.py
+        dest: /tmp/get-pip.py
 
+    - name: Install pip
+      command: pip install --upgrade pip
+
+   - name: Docker SDK
+     pip:
+       name: docker
+        
+- name: Deploy Container
+  hosts: 192.168.0.215
+  become: true
+
+  tasks:
     - name: Pull image and create the container using docker_container
       docker_image:
         name: brianbudowick/devopsfinal:latest
