@@ -1,6 +1,6 @@
 ---
 - name: Install and Deploy docker on linuxclient1
-  hosts: 192.168.0.215
+  hosts: 127.0.0.1
   become: True
   become_user: root
   
@@ -47,7 +47,7 @@
         name: docker
         
 - name: Deploy Container
-  hosts: 192.168.0.215
+  hosts: 127.0.0.1
   become: true
 
   tasks:
