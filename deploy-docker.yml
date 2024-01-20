@@ -1,7 +1,7 @@
 ---
 - name: Install and Deploy docker on linuxclient1
   hosts: 192.168.0.215
-  become: True
+  become: true
   become_user: root
 
   tasks:
@@ -13,7 +13,7 @@
     - name: Download Docker repository file using the get_url
       shell: sudo yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
 
-    - name: Install Docker packages (engine) using yum module, reference https://docs.docker.com/engine/install/centos/#installation-methods
+    - name: Install Docker packages (engine) using yum module
       yum:
         name:
           - docker-ce
@@ -28,38 +28,41 @@
         name: docker
         state: started
         enabled: yes
-        
-    - name: Install Python
+
+    - name: Install python3 and python3-pip
       yum:
         name:
-          - python
-        state: present      
+          - python3
+          - python3-pip
+        state: present
 
-    - name: Download get-pip.py
-      get_url:
-        url: https://bootstrap.pypa.io/pip/2.7/get-pip.py
-        dest: /tmp/get-pip.py
-
-    - name: Install pip
-      command: python /tmp/get-pip.py
-
-    - name: Upgrade pip
-      command: pip install --upgrade pip
-
+    - name: Ensure python3-pip is installed
+      yum:
+        name: python3-pip
+        state: present
+        
     - name: Install docker-SDK
       pip:
-        name: docker
+       name: docker
+       executable: /usr/bin/pip3
 
-- name: Deploy Docker Container
+
+
+- name: Deploy Container
   hosts: 192.168.0.215
   become: true
 
   tasks:
-    - name: Pull image and create the container using docker_container
+    - name: Check if Docker image exists
+      docker_image_facts:
+        name: brianbudowick/devopsfinal:latest
+      register: docker_image_result
+
+    - name: Pull image if it doesn't exist
       docker_image:
         name: brianbudowick/devopsfinal:latest
-        source: pull
-    
+      when: not docker_image_result.exists
+
     - name: Start the container using docker_container
       docker_container:
         name: tomcat_devops
@@ -69,7 +72,7 @@
         auto_remove: true
         ports:
           - "8080:8080"
-          
+
     - name: Log out of DockerHub
-      docker_login:
+      docker_login: 
         state: absent
