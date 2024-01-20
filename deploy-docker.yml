@@ -36,10 +36,10 @@
           - python3-pip
         state: present
 
-    - name: Install Docker Python library
-      pip:
-        name: docker
-        state: present
+   # - name: Install Docker Python library
+    #  pip:
+     #   name: docker
+      #  state: present
 
 - name: Deploy Container
   hosts: 172.17.0.1
