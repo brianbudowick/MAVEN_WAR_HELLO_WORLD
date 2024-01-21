@@ -49,16 +49,24 @@
 
     - name: Download get-pip.py
       get_url:
-        url: https://bootstrap.pypa.io/pip/3.6/get-pip.py
+        url: https://bootstrap.pypa.io/pip/2.7/get-pip.py
         dest: /tmp/get-pip.py
-      
-    - name: Install pip
+
+    - name: Install pip for Python 2.7
       command: python /tmp/get-pip.py
-    
+      args:
+        creates: /usr/bin/pip
+
+    - name: Upgrade pip
+      command: pip install --upgrade pip
+
+    - name: Install specific version of pip
+      command: python -m pip install --upgrade "pip < 21.0"
+
     - name: Install docker-SDK
       pip:
         name: docker
-       
+        executable: /usr/bin/pip
 
 - name: Deploy Container
   hosts: 192.168.0.215
@@ -96,4 +104,3 @@
     - name: Log out of DockerHub
       docker_login:
         state: absent
-
