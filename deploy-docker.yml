@@ -53,7 +53,7 @@
         dest: /tmp/get-pip.py
       
     - name: Install pip
-      command: python3 /tmp/get-pip.py
+      command: python /tmp/get-pip.py
     
     - name: Install docker-SDK
       pip:
