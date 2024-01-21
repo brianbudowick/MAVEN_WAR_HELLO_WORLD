@@ -50,10 +50,20 @@
   hosts: 192.168.0.215
   become: true
 
-  tasks:
+  tasks:     
     - name: Install docker library
       pip:
         name: docker
+
+    - name: Install required Python libraries
+      pip:
+        name:
+          - docker>=2.7
+          - requests
+          
+    - name: Set Python interpreter for Ansible 
+      ansible.builtin.set_fact:
+        ansible_python_interpreter: /user/bin/python3
   
     - name: Pull image and create the container using docker_container
       docker_image:
