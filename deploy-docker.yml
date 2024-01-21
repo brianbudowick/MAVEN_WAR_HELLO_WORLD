@@ -50,26 +50,26 @@
   hosts: 192.168.0.215
   become: true
 
-  tasks:     
+  tasks:
     - name: Install required Python libraries
       pip3:
         name:
           - docker
           - requests
-          
-    - name: Set Python interpreter for Ansible 
+
+    - name: Set Python interpreter for Ansible
       ansible.builtin.set_fact:
-        ansible_python_interpreter: /user/bin/python3
-    
+        ansible_python_interpreter: /usr/bin/python3
+
     - name: Install docker library
       pip:
-        name: docker   
-  
+        name: docker
+
     - name: Pull image and create the container using docker_container
       docker_image:
         name: brianbudowick/devopsfinal:latest
         source: pull
-    
+
     - name: Start the container using docker_container
       docker_container:
         name: tomcat_devops
@@ -79,7 +79,7 @@
         auto_remove: true
         ports:
           - "8080:8080"
-          
+
     - name: Log out of DockerHub
       docker_login:
         state: absent
