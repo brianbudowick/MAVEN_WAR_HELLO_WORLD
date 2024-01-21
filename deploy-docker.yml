@@ -52,9 +52,9 @@
 
   tasks:     
     - name: Install required Python libraries
-      pip:
+      pip3:
         name:
-          - docker>=2.7
+          - docker
           - requests
           
     - name: Set Python interpreter for Ansible 
