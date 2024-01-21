@@ -54,11 +54,9 @@
   become: true
 
   tasks:
-    - name: Install Docker SDK for Python
+    - name: Install docker library
       pip:
         name: docker
-        executable: /usr/bin/pip3
-        state: present
   
     - name: Pull image and create the container using docker_container
       docker_image:
