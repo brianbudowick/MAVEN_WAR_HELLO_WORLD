@@ -51,8 +51,10 @@
         url: https://bootstrap.pypa.io/pip/2.7/get-pip.py
         dest: /tmp/get-pip.py
 
-    - name: Install pip
-      command: python /tmp/get-pip.py
+   - name: Install pip for Python 2.7
+     command: python /tmp/get-pip-2.7.py
+     args:
+       creates: /usr/bin/pip
 
     - name: Upgrade pip
       command: pip install --upgrade pip
