@@ -52,9 +52,7 @@
         url: https://bootstrap.pypa.io/pip/2.7/get-pip.py
         dest: /tmp/get-pip.py
    
-    - name: Upgrade pip
-      command: pip install --upgrade pip
-
+   
     - name: Install specific version of pip
       command: python -m pip install --upgrade "pip < 21.0"
 
