@@ -52,10 +52,10 @@
 
   tasks:
     - name: Install required Python libraries
-      pip3:
+      pip:
         name:
           - docker
-          - requests
+        
 
     - name: Set Python interpreter for Ansible
       ansible.builtin.set_fact:
