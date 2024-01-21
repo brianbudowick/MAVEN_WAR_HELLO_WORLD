@@ -1,4 +1,3 @@
----
 - name: Install and Deploy docker on linuxclient1
   hosts: 192.168.0.215
   become: true
@@ -40,12 +39,12 @@
       yum:
         name: python3-pip
         state: present
-     
-     - name: Install Python
+
+    - name: Install Python
       yum:
         name:
           - python
-        state: present      
+        state: present
 
     - name: Download get-pip.py
       get_url:
@@ -57,12 +56,12 @@
 
     - name: Upgrade pip
       command: pip install --upgrade pip
-    
+
     - name: Install docker-SDK
       pip:
-       name: docker
-       executable: /usr/bin/pip
-       
+        name: docker
+        executable: /usr/bin/pip
+
 - name: Deploy Container
   hosts: 192.168.0.215
   become: true
@@ -72,7 +71,6 @@
       pip:
         name:
           - docker
-        
 
     - name: Set Python interpreter for Ansible
       ansible.builtin.set_fact:
